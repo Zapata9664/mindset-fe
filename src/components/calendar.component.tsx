@@ -1,21 +1,17 @@
-import React, { useState} from 'react'
-import { LocalizationProvider, DateCalendar, DateCalendarProps } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import React from 'react'
+import { Dayjs } from 'dayjs';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateCalendar, DateCalendarProps } from '@mui/x-date-pickers/DateCalendar';
 
-const adapter = new AdapterDayjs({});
 
-export const Calendar = (props: JSX.IntrinsicAttributes & DateCalendarProps<Date>) => {
-    const firstAvailableSlotDay = adapter.date(new Date(2024, 10, 10))
-    const [calendarValue, setCalendarValue] = useState<Date | null>(new Date());
-
-    const onChange = (newValue:Date | null) => {
-        setCalendarValue(newValue)
-        console.log('hola' + newValue)
-    }
+export const Calendar = (props: DateCalendarProps<Dayjs | null>) => {
 
     return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DateCalendar onChange={onChange} value={calendarValue}></DateCalendar>
-    </LocalizationProvider>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <div >
+                <DateCalendar {...props}/>
+            </div>
+        </LocalizationProvider>
     )
 }
