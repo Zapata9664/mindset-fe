@@ -4,6 +4,8 @@ import { Button as ButtonComponent, ButtonProps } from '@mui/material'
 
 export const Button = (props: Attributes & JSX.IntrinsicAttributes & ButtonProps) => {
     return (
-        <ButtonComponent {...props}></ButtonComponent>
+        <div>
+            <ButtonComponent {...props}></ButtonComponent>
+        </div>
     )
 }

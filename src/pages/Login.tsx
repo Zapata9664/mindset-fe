@@ -1,8 +1,6 @@
 import { Button } from '../components/button.component';
 import React, { useState } from "react";
 import { Input } from '../components/input.component';
-import { useFetch } from '../hooks/useLogin'
-import { setUserLogin } from '../redux/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { imagenLogout } from '../assets';
 import axios, { Axios } from 'axios';
@@ -30,6 +28,7 @@ export const Login = () => {
       }
     }
   )
+    console.log(res)
     localStorage.setItem('token', JSON.stringify(res.data))
     navigate('/dashboard')
   };
@@ -49,5 +48,3 @@ export const Login = () => {
     </div>
   )
 }
-
-

@@ -8,8 +8,8 @@ export const Header = () => {
     
   const [token, setToken] = useState()
   useEffect(() => {
-      console.log(localStorage.getItem("token")) 
-      console.log(token)
+     // console.log(localStorage.getItem("token")) 
+      // console.log(token)
   }, [token])
 
         
