@@ -1,13 +1,14 @@
-import { Button } from '../components/button.component';
 import React, { useState } from "react";
-import { Input } from '../components/input.component';
-import { useNavigate } from 'react-router-dom';
+import { Button, Input } from '../components';
 import { imagenLogout } from '../assets';
+import { setToken } from '../redux';
+import { useNavigate } from 'react-router-dom';
 import axios, { Axios } from 'axios';
-
+import { useDispatch } from 'react-redux';
 
 export const Login = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [user, setUser] = useState({
     username: '',
     password: '',
@@ -19,20 +20,17 @@ export const Login = () => {
   }
 
   const handlerSubmit = async () => {
-
-
     const res = await axios.post('http://localhost:3200/auth/login', JSON.stringify(user), {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
       }
     }
-  )
-    console.log(res)
+    )
+    dispatch(setToken(res.data))
     localStorage.setItem('token', JSON.stringify(res.data))
     navigate('/dashboard')
   };
-
 
   return (
     <div className="flex justify-center items-center p-16 bg-teal-50">
