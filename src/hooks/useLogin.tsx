@@ -3,19 +3,19 @@ import axios from 'axios'
 
 export const useFetch = (dateFormat: string) => {
   const [data, setData] = useState([]);
+
   useEffect(() => {
     if (!dateFormat) {
       return;
     }
-    const getAppoinments = async () => {
-      const response = await axios.get(`http://localhost:3200/appointment/${dateFormat}`)
+    const getAppointments = async () => {
+      const response = await axios.get(`http://localhost:3200/appointment/${dateFormat}`);
       setData(response.data)
-
     }
-    getAppoinments();
-    
+    getAppointments();
+
   }, [dateFormat]);
 
   return [data];
-};
 
+};

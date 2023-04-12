@@ -5,7 +5,7 @@ import { Login } from './login'
 import { Dashboard } from './dashboard'
 import { Form } from './formPage'
 import { setToken } from '../redux';
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 export const Router = () => {
@@ -24,9 +24,10 @@ export const Router = () => {
                 <Header></Header>
                 <Routes>
                     <Route path='/' element={<Lading />} />
-                    <Route path='/login' element={<Login />} />
+                    <Route path='/lading' element={<Lading />} />
                     <Route path='/dashboard' element={<Dashboard />} />
                     <Route path='/form' element={<Form />} />
+                    <Route path="login" element={ token ? <Navigate to="/dashboard"/> : <Login />} />
                 </Routes>
             </BrowserRouter>
             <Footer></Footer>

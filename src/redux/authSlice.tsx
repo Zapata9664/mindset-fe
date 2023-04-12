@@ -4,7 +4,7 @@ import { RootState } from './store';
 
 export const authSlice = createSlice({
   name: 'auth',
-  initialState: { user: {}, token: null, date: '', hour: Number },
+  initialState: { user: {}, token: null, date: '', hour: null },
   reducers: {
     setUserLogin: (state, action) => {
       state.user = action.payload

@@ -27,8 +27,9 @@ export const Login = () => {
       }
     }
     )
-    dispatch(setToken(res.data))
-    localStorage.setItem('token', JSON.stringify(res.data))
+    dispatch(setToken(res.data.access_token))
+    localStorage.setItem('token', JSON.stringify(res.data.access_token))
+    console.log(res.data.access_token)
     navigate('/dashboard')
   };
 
