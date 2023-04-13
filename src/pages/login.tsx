@@ -5,6 +5,7 @@ import { setToken } from '../redux';
 import { useNavigate } from 'react-router-dom';
 import axios, { Axios } from 'axios';
 import { useDispatch } from 'react-redux';
+import { userLogin } from "../hooks";
 
 export const Login = () => {
   const navigate = useNavigate()
@@ -13,23 +14,17 @@ export const Login = () => {
     username: '',
     password: '',
   });
-
+  
   const OnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUser({ ...user, [event.target.name]: event.target.value })
-
+    
   }
-
+  
   const handlerSubmit = async () => {
-    const res = await axios.post('http://localhost:3200/auth/login', JSON.stringify(user), {
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      }
-    }
-    )
-    dispatch(setToken(res.data.access_token))
-    localStorage.setItem('token', JSON.stringify(res.data.access_token))
-    console.log(res.data.access_token)
+    const res = userLogin('http://localhost:3200/auth/login', user)
+    dispatch(setToken(res))
+    localStorage.setItem('token', JSON.stringify(res))
+    console.log(res)
     navigate('/dashboard')
   };
 

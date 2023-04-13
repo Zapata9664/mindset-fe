@@ -14,7 +14,6 @@ export const Lading = () => {
 
 
     const [buttons] = useFetch(dateFormat)
-    console.log(buttons)
 
     const onChange = (newValue: Dayjs | null) => {
         setDateFormat(newValue?.format('DD-MM-YYYY') as string);

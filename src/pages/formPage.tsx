@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Input, Button } from '../components'
 import { useDispatch } from 'react-redux';
-import { setDate, setHourState } from '../redux';
+import { RootState, setDate, setHourState } from '../redux';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 
 export const Form = () => {
@@ -12,11 +13,11 @@ export const Form = () => {
         date: '',
         hour: '',
     })
+    const date = useSelector((state: RootState) => state.auth.date)
+    const hour = useSelector((state: RootState) => state.auth.hour)
 
     useEffect(() => {
         const dataDateSet = () => {
-            const date = localStorage.getItem('date')
-            const hour = localStorage.getItem('hour')
 
             if (date && hour) {
                 dispatch(setDate(date))
