@@ -1,38 +1,39 @@
 import React, { useState } from "react";
 import { Button, Input } from '../components';
 import { imagenLogout } from '../assets';
-import { setToken } from '../redux';
+import { RootState, setToken } from '../redux';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLoginUser } from "../hooks";
 
 export const Login = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const token = useSelector((state: RootState) => state.auth.token)
+
+  const [user, setUser] = useState({
+    username: null,
+    password: null,
+  });
   const [userInput, setUserInput] = useState({
     username: null,
     password: null,
   });
-  const [user, setUser] = useState<{username: null | string, password: null | string }>({
-    username: null,
-    password: null,
-  });
-  const [res] = useLoginUser(user);
-
-
+  
+  const [res] = useLoginUser(user.username, user.password);
+  
 
   const OnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUserInput({ ...userInput, [event.target.name]: event.target.value })
+    setUserInput({ ...userInput, [event.target.name]: event.target.value })    
   }
+
   const handlerSubmit = () => {
-    console.log(userInput);
-    
-    setUser({username: 'jose', password: 'jose' });
-    console.log(user);
-    
+    setUser(userInput)
     dispatch(setToken(res))
-    localStorage.setItem('token', JSON.stringify(res))
-    navigate('/dashboard')
+    if (!token) {
+      navigate('/dashboard')
+    }
+    
   };
 
   return (

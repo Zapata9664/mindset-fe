@@ -5,16 +5,16 @@ import { Login } from './login'
 import { Dashboard } from './dashboard'
 import { Form } from './formPage'
 import { Successful } from './successful';
-import { setToken } from '../redux';
+import { RootState, setToken } from '../redux';
 import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const Router = () => {
-    const token = localStorage.getItem('token')
+    const token = useSelector((state: RootState) => state.auth.token)
+
     const dispatch = useDispatch()
 
     useEffect(() => {
-        const token = localStorage.getItem('token')
         if (token) {
             dispatch(setToken(token))
         }

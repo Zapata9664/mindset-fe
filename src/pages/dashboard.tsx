@@ -6,7 +6,6 @@ export const Dashboard = () => {
     const res = localStorage.getItem('token')
     useEffect(() => {
         if (res == null) {
-            console.log(res)
             navigate('/login')
         }
     }, [res])
