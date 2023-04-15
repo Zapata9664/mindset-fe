@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { RootState } from '../redux'
 
 export const Dashboard = () => {
     const navigate = useNavigate()
-    const res = localStorage.getItem('token')
+    const token = useSelector((state: RootState) => state.auth.token)
     useEffect(() => {
-        if (res == null) {
+        if (token == null) {
             navigate('/login')
         }
-    }, [res])
+    }, [token])
 
     return (
         <div>

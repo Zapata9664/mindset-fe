@@ -10,15 +10,8 @@ import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const Router = () => {
-    const token = useSelector((state: RootState) => state.auth.token)
 
-    const dispatch = useDispatch()
 
-    useEffect(() => {
-        if (token) {
-            dispatch(setToken(token))
-        }
-    })
     return (
         <div>
             <BrowserRouter>

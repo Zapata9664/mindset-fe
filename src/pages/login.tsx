@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Input } from '../components';
 import { imagenLogout } from '../assets';
 import { RootState, setToken } from '../redux';
@@ -29,12 +29,15 @@ export const Login = () => {
 
   const handlerSubmit = () => {
     setUser(userInput)
-    dispatch(setToken(res))
-    if (!token) {
-      navigate('/dashboard')
-    }
+    dispatch(setToken(res)) 
     
   };
+  
+  useEffect(() => {
+    if (token) {
+      navigate('/dashboard')  
+    }
+  })
 
   return (
     <div className="flex justify-center items-center p-16 bg-teal-50">
