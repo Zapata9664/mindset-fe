@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
-import { useFetch } from '../hooks';
+import { useGetButtons } from '../hooks';
 import { Button, Calendar } from '../components';
 import { RootState, setDate, setHourState } from '../redux'
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,7 +12,7 @@ export const Lading = () => {
     const navigate = useNavigate()
     const dateFormat = useSelector((state: RootState) => state.auth.date)
     const dispatch = useDispatch()
-    const [buttons] = useFetch(dateFormat)
+    const [buttons] = useGetButtons(dateFormat)
 
     const onChange = (newValue: string) => {
         dispatch(setDate(newValue));

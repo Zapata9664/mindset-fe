@@ -4,7 +4,7 @@ import { imagenLogout } from '../assets';
 import { RootState, setToken } from '../redux';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLoginUser } from "../hooks";
+import { useLogin } from "../hooks";
 
 export const Login = () => {
   const navigate = useNavigate()
@@ -20,7 +20,7 @@ export const Login = () => {
     password: null,
   });
   
-  const [res] = useLoginUser(user.username, user.password);
+  const [res] = useLogin(user.username, user.password);
   
 
   const OnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
