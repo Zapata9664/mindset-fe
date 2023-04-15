@@ -3,28 +3,35 @@ import { Button, Input } from '../components';
 import { imagenLogout } from '../assets';
 import { setToken } from '../redux';
 import { useNavigate } from 'react-router-dom';
-import axios, { Axios } from 'axios';
 import { useDispatch } from 'react-redux';
-import { userLogin } from "../hooks";
+import { useLoginUser } from "../hooks";
 
 export const Login = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const [user, setUser] = useState({
-    username: '',
-    password: '',
+  const [userInput, setUserInput] = useState({
+    username: null,
+    password: null,
   });
-  
+  const [user, setUser] = useState<{username: null | string, password: null | string }>({
+    username: null,
+    password: null,
+  });
+  const [res] = useLoginUser(user);
+
+
+
   const OnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUser({ ...user, [event.target.name]: event.target.value })
-    
+    setUserInput({ ...userInput, [event.target.name]: event.target.value })
   }
-  
-  const handlerSubmit = async () => {
-    const res = userLogin('http://localhost:3200/auth/login', user)
+  const handlerSubmit = () => {
+    console.log(userInput);
+    
+    setUser({username: 'jose', password: 'jose' });
+    console.log(user);
+    
     dispatch(setToken(res))
     localStorage.setItem('token', JSON.stringify(res))
-    console.log(res)
     navigate('/dashboard')
   };
 

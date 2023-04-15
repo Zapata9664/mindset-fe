@@ -17,8 +17,7 @@ export const authSlice = createSlice({
     },
     setHourState: (state, action) => {
       state.hour = action.payload
-
-    }
+    },
   },
 });
 

@@ -1,18 +1,21 @@
 import { useState, useEffect } from "react";
 import axios from 'axios'
 
-export const userLogin = (url: string, user: {}) => {
-  const [data, setData] = useState(null);
+export const useLoginUser = (user: {}): any => {
+  const [data, setData] = useState([]);
 
   useEffect(() => {
+    if(!user){
+      return;
+    }
     const postHours = async () => {
-      const response = await axios.post(url, user);
+      const response = await axios.post('http://localhost:3200/auth/login', user);
       setData(response.data)
     }
     postHours();
 
   }, []);
 
-  return data;
+  return [data];
 
 };
