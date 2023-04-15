@@ -40,11 +40,11 @@ export const Lading = () => {
                 <h1 className='text-teal-700 font-sans text-lg py-4'><b>PLEASE SELECT A HOUR</b></h1>
                 <div className='flex space-x-6'>
                     {buttons.map((days: JSX.Element, index: number) => (
-                        <Button onClick={() => onChangeHour(index)} sx={{ backgroundColor: '#8AA6A3', color: 'white', BorderColor: '#10403B' }} variant='outlined' className='border-teal-500' key={index} data-index={index}>{days}</Button>
+                        <Button onClick={() => onChangeHour(index)} sx={{ backgroundColor: '#8AA6A3', color: 'white', borderColor: '#8AA6A3' }} variant='outlined' className='border-teal-500' key={index} data-index={index}>{days}</Button>
                     ))}
                 </div>
                 <div className='py-5'>
-                    <Button onClick={takeDate} sx={{ backgroundColor: '#10403b', color: 'white', BorderColor: '#10403B' }} variant='outlined'>TAKE YOUR DATE</Button>
+                    <Button onClick={takeDate} sx={{ backgroundColor: '#10403b', color: 'white', borderColor: '#8AA6A3' }} variant='outlined'>TAKE YOUR DATE</Button>
                 </div>
             </div>
         </div>

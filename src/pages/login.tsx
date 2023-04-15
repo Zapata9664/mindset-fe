@@ -44,7 +44,7 @@ export const Login = () => {
         <h1 className='text-teal-700 font-sans'>We are <b>MENTAL HEALTH</b></h1>
         <Input id="outlined-basic" label="Email" variant="standard" name="username" onChange={OnChange} />
         <Input id="outlined-basic" label="Password" variant="standard" name='password' type="password" onChange={OnChange} />
-        <Button sx={{ backgroundColor: '#10403B', color: 'white', BorderColor: '#10403B' }} variant='outlined' onClick={handlerSubmit} >Sign in</Button>
+        <Button sx={{ backgroundColor: '#10403B', color: 'white', borderColor: '#10403B' }} variant='outlined' onClick={handlerSubmit} >Sign in</Button>
       </div>
     </div>
   )

@@ -76,7 +76,7 @@ export const Form = () => {
                 {status === 400 ? (
                     <Error severity="error">{error}</Error>
                 ) : <Error variant="outlined" severity="info">Fields marked with (*) are required</Error>}
-                <Button sx={{ backgroundColor: '#10403B', color: 'white', BorderColor: '#10403B' }} variant='outlined' onClick={handlerSubmit} >Make a date</Button>
+                <Button sx={{ backgroundColor: '#10403B', color: 'white', borderColor: '#10403B' }} variant='outlined' onClick={handlerSubmit} >Make a date</Button>
             </div>
         </div>
     )
