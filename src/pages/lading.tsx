@@ -11,6 +11,7 @@ import { Packages } from '../components';
 export const Lading = () => {
     const navigate = useNavigate()
     const dateFormat = useSelector((state: RootState) => state.auth.date)
+    const hour= useSelector((state: RootState) => state.auth.hour)
     const dispatch = useDispatch()
     const [buttons] = useGetButtons(dateFormat)
 
@@ -25,6 +26,7 @@ export const Lading = () => {
 
 
     const takeDate = () => {
+        if (dateFormat && hour)
         navigate('/form')
     }
 

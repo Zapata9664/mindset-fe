@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { Input, Button } from '../components'
 import { RootState } from '../redux';
-import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { Error } from '../components';
 import { useNavigate } from 'react-router-dom';
+import { useCreateappointments } from '../hooks';
 
 export const Form = () => {
-
+    const date = useSelector((state: RootState) => state.auth.date)
+    const hour = useSelector((state: RootState) => state.auth.hour)
+    const [appointment, setappointment] = useState<{ name: string | null | undefined, email: string | null | undefined, reason: string | null, date: string | null, hour: number | null, }>({ name: undefined, email: undefined, date: null, hour: null, reason: null })
+    const res = useCreateappointments(appointment)
     const navigate = useNavigate()
-    const [dataDate, setDataDate] = useState<{ date: string | null, hour: null | undefined }>({
+    const [dataDate, setDataDate] = useState<{ date: string | null, hour: number | null }>({
         date: null,
         hour: null,
     })
-    const [error, setError] = useState('');
-    const [status, setStatus] = useState();
 
 
-    const date = useSelector((state: RootState) => state.auth.date)
-    const hour = useSelector((state: RootState) => state.auth.hour)
+
 
     useEffect(() => {
         const dataDateSet = () => {
@@ -30,7 +30,7 @@ export const Form = () => {
     }, []
     )
 
-    const [form, setForm] = useState({
+    const [form, setForm] = useState<{ name: string | null, email: string | null, reason: string | null }>({
         name: null,
         email: null,
         reason: '',
@@ -46,21 +46,10 @@ export const Form = () => {
             ...dataDate,
             ...form
         }
-        try {
-            const res = await axios.post('http://localhost:3200/appointment', JSON.stringify(appointment), {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                }
-            })
-            if (res.status === 201) {
-                navigate('/successful')
-            }
-        } catch (error: any) {
-            setStatus(error.response.data.statusCode)
-            setError('Please fill in the required fields')
-        }
+        setappointment(appointment)
+        console.log(res);
     }
+
 
     return (
 
@@ -70,8 +59,8 @@ export const Form = () => {
                 <Input required id="outlined-basic" label="Name" variant="outlined" name="name" onChange={onChange} />
                 <Input required id="outlined-basic" label="Email" variant="outlined" name="email" onChange={onChange} />
                 <Input id="outlined-multiline-static" label="Please tell us your reason" multiline rows={4} name='reason' onChange={onChange} />
-                {status === 400 ? (
-                    <Error severity="error">{error}</Error>
+                {res === 400 ? (
+                    <Error severity="error">Please fill in the required fields (*)</Error>
                 ) : <Error variant="outlined" severity="info">Fields marked with (*) are required</Error>}
                 <Button sx={{ backgroundColor: '#10403B', color: 'white', borderColor: '#10403B' }} variant='outlined' onClick={handlerSubmit} >Make a date</Button>
             </div>
