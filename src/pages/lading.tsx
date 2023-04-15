@@ -1,28 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import { useFetch } from '../hooks';
 import { Button, Calendar } from '../components';
-import { setDate, setHourState } from '../redux'
-import { useDispatch } from 'react-redux';
+import { RootState, setDate, setHourState } from '../redux'
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Packages } from '../components';
 
 
 export const Lading = () => {
     const navigate = useNavigate()
-    const [dateFormat, setDateFormat] = useState('');
-    const [hour, setHour] = useState<{ hour: null }>()
+    const dateFormat = useSelector((state: RootState) => state.auth.date)
     const dispatch = useDispatch()
     const [buttons] = useFetch(dateFormat)
 
-    const onChange = (newValue: Dayjs | null) => {
-        setDateFormat(newValue?.format('DD-MM-YYYY') as string);
-        dispatch(setDate(dateFormat));
+    const onChange = (newValue: string) => {
+        dispatch(setDate(newValue));
     }
 
     const onChangeHour = (event: any) => {
-        setHour(buttons[event])
-        dispatch(setHourState(hour))
+        const res = buttons[event] 
+        dispatch(setHourState(res))
     }
 
 
@@ -37,7 +35,7 @@ export const Lading = () => {
 
                 <div className='p-20 m-24 space-y-6 '>
                     <h1 className='text-teal-700 font-sans text-lg'><b>PLEASE SELECT A DAY</b></h1>
-                    <Calendar onChange={onChange} className='rounded-xl bg-teal-50 border-2 border-gray-400  w-96' />
+                    <Calendar  onChange={(newValue) => onChange(dayjs(newValue).format('DD-MM-YYYY'))} className='rounded-xl bg-teal-50 border-2 border-gray-400  w-96' />
                 </div>
 
 

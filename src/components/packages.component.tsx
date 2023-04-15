@@ -8,17 +8,17 @@ const images = [
   {
     url: '/static/images/buttons/breakfast.jpg',
     title: 'Breakfast',
-    width: '40%',
+    width: '33.3%',
   },
   {
     url: '/static/images/buttons/burgers.jpg',
     title: 'Burgers',
-    width: '30%',
+    width: '33.3%',
   },
   {
     url: '/static/images/buttons/camera.jpg',
     title: 'Camera',
-    width: '30%',
+    width: '33.3%',
   },
 ];
 
@@ -119,4 +119,5 @@ export const Packages = () => {
       ))}
     </Box>
   );
+
 }

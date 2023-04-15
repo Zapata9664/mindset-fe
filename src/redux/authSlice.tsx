@@ -13,10 +13,14 @@ export const authSlice = createSlice({
       state.token = action.payload
     },
     setDate: (state, action) => {
+      console.log(action);
+      
       state.date = action.payload
     },
     setHourState: (state, action) => {
       state.hour = action.payload
+      console.log(action);
+      
     },
   },
 });

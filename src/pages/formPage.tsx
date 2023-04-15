@@ -58,9 +58,6 @@ export const Form = () => {
             }
         } catch (error: any) {
             setStatus(error.response.data.statusCode)
-            if (status === 400) {
-
-            }
             setError('Please fill in the required fields')
         }
     }
