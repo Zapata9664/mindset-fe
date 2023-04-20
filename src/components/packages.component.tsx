@@ -5,7 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions } from '@mui/material';
 import { Button } from './button.component';
-import { packagesOne, packagesTwo, packagesThree } from '../assets';
+import { packagesThree } from '../assets';
 
 interface PackagesComponentProps {
     title: string;
@@ -14,20 +14,14 @@ interface PackagesComponentProps {
       path: string;
     }
 
-export const PackagesComponent = ({title, sessions, description, path}: PackagesComponentProps) => {
-  const images = {
-    image1: packagesOne, 
-    image2: packagesTwo, 
-    image3: packagesThree,
-  }
-  
+export const PackagesComponent = ({title, sessions, description, path}: PackagesComponentProps) => {  
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="140px"
-          image={images.image3}
+          image={packagesThree}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
