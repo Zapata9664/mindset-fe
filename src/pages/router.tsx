@@ -5,9 +5,8 @@ import { Login } from './login'
 import { Dashboard } from './dashboard'
 import { Form } from './formPage'
 import { Successful } from './successful';
-import { RootState, setToken } from '../redux';
 import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+
 
 export const Router = () => {
 

@@ -7,7 +7,7 @@ import { DateCalendar, DateCalendarProps } from '@mui/x-date-pickers/DateCalenda
 export const Calendar = (props: DateCalendarProps<Dayjs | null>) => {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <div >
+            <div className='rounded-xl border-2 border-gray-400  w-96'>
                 <DateCalendar {...props} />
             </div>
         </LocalizationProvider>
