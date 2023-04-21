@@ -17,9 +17,6 @@ export const Form = () => {
         hour: null,
     })
 
-
-
-
     useEffect(() => {
         const dataDateSet = () => {
             if (date && hour) {

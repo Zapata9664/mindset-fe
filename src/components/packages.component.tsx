@@ -36,7 +36,7 @@ export const PackagesComponent = ({title, sessions, description, path}: Packages
         </CardContent>
       </CardActionArea>
       <CardActions>
-      <Button sx={{ backgroundColor: '#10403b', color: 'white', borderColor: '#8AA6A3' }} variant='outlined'>DETAILS</Button>
+      <Button sx={{ backgroundColor: '#8AA6A3', color: 'white', borderColor: '#8AA6A3' }} variant='outlined'>BUY</Button>
 
       </CardActions>
     </Card>

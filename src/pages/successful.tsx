@@ -9,7 +9,6 @@ export const Successful = () => {
     navigate('/')
   }
   return (
-    <div className="bg-[url('/src/assets/backgroundsuccess.png')] bg-cover">
       <div className="flex justify-center items-center p-12 m-6">
         <div className="border flex border-gray-400 rounded-lg p-8 bg-white flex-col h-72 justify-around">
           <h1 className='text-teal-700 font-sans '><b>YOUR APPOINTMENT HAS BEEN CREATED SUCCESSFULLY</b></h1>
@@ -17,6 +16,5 @@ export const Successful = () => {
           <Button onClick={handlerSubmit} sx={{ backgroundColor: '#10403b', color: 'white', borderColor: '#8AA6A3' }} variant='outlined'>GO TO HOME</Button>
         </div>
       </div>
-    </div>
   );
 };
