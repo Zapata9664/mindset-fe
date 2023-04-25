@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { RootState } from '../redux'
+import { CalendarMeetings } from '../components/calendarMeetings/calendarMeetings.component'
 
 export const Dashboard = () => {
     const navigate = useNavigate()
@@ -14,7 +15,7 @@ export const Dashboard = () => {
 
     return (
         <div>
-            DASHBOARD
+            <CalendarMeetings />
         </div>
     )
 }
