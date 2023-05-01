@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 
-export const useCreateappointments = (appointment: { name: string | null | undefined, email: string | null | undefined, date: string | null, hour: number | null, reason: string | null }) => {
+export const useCreateappointments = (appointment: { name: string | null | undefined, email: string | null | undefined, day: number | null | undefined, month: number | null | undefined, year: number | null | undefined, hour: number | null, reason: string | null }) => {
     const [error, setError] = useState('');
     const [status, setStatus] = useState(6);
 

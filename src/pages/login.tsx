@@ -40,7 +40,7 @@ export const Login = () => {
   })
 
   return (
-    <div className="flex justify-center items-center p-16 bg-teal-50">
+    <div className="flex justify-center items-center p-28 bg-teal-50">
       <div>
         <img src={imagenLogout} className='border-gray-400 h-96' />
       </div>

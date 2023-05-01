@@ -4,7 +4,7 @@ import { RootState } from './store';
 
 export const authSlice = createSlice({
   name: 'auth',
-  initialState: { user: {}, token: null, date: '', hour: null },
+  initialState: { user: {}, token: null, day: null, month: null, year: null, hour: null },
   reducers: {
     setUserLogin: (state, action) => {
       state.user = action.payload
@@ -12,19 +12,22 @@ export const authSlice = createSlice({
     setToken: (state, action) => {
       state.token = action.payload
     },
-    setDate: (state, action) => {
-      console.log(action);
-      
-      state.date = action.payload
+    setDay: (state, action) => {      
+      state.day = action.payload
+    },
+    setMonth: (state, action) => {      
+      state.month = action.payload
+    },
+    setYear: (state, action) => {      
+      state.year = action.payload
     },
     setHourState: (state, action) => {
       state.hour = action.payload
-      console.log(action);
       
     },
   },
 });
 
-export const { setUserLogin, setToken, setDate, setHourState } = authSlice.actions;
+export const { setUserLogin, setToken, setDay, setMonth, setYear, setHourState } = authSlice.actions;
 export default authSlice.reducer
 export const selectCurrentUser = (state: RootState) => state.auth.user;

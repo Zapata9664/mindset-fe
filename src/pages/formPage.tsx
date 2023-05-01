@@ -3,24 +3,26 @@ import { Input, Button } from '../components'
 import { RootState } from '../redux';
 import { useSelector } from 'react-redux';
 import { Error } from '../components';
-import { useNavigate } from 'react-router-dom';
 import { useCreateappointments } from '../hooks';
 
 export const Form = () => {
-    const date = useSelector((state: RootState) => state.auth.date)
+    const day = useSelector((state: RootState) => state.auth.day)
+    const month = useSelector((state: RootState) => state.auth.month)
+    const year = useSelector((state: RootState) => state.auth.year)
     const hour = useSelector((state: RootState) => state.auth.hour)
-    const [appointment, setappointment] = useState<{ name: string | null | undefined, email: string | null | undefined, reason: string | null, date: string | null, hour: number | null, }>({ name: undefined, email: undefined, date: null, hour: null, reason: null })
+    const [appointment, setappointment] = useState<{ name: string | null | undefined, email: string | null | undefined, reason: string | null, day: number | null | undefined, month: number | null | undefined, year: number | null | undefined, hour: number | null, }>({ name: undefined, email: undefined, day: undefined, month: undefined, year: undefined, hour: null, reason: null })
     const res = useCreateappointments(appointment)
-    const navigate = useNavigate()
-    const [dataDate, setDataDate] = useState<{ date: string | null, hour: number | null }>({
-        date: null,
+    const [dataDate, setDataDate] = useState<{ day: number | null, month: number | null, year: number | null, hour: number | null }>({
+        day: null,
+        month: null,
+        year: null,
         hour: null,
     })
 
     useEffect(() => {
         const dataDateSet = () => {
-            if (date && hour) {
-                setDataDate({ ...dataDate, date: date, hour: hour })
+            if (day && month && year && hour) {
+                setDataDate({ ...dataDate, day: day, month: month, year: year, hour: hour })
             }
         }
         dataDateSet()
