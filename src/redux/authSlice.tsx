@@ -12,22 +12,19 @@ export const authSlice = createSlice({
     setToken: (state, action) => {
       state.token = action.payload
     },
-    setDay: (state, action) => {      
-      state.day = action.payload
-    },
-    setMonth: (state, action) => {      
-      state.month = action.payload
-    },
-    setYear: (state, action) => {      
-      state.year = action.payload
+    setDate: (state, { payload }) => {
+      state.day = payload.day
+      state.month = payload.month
+      state.year = payload.year
+
     },
     setHourState: (state, action) => {
       state.hour = action.payload
-      
+
     },
   },
 });
 
-export const { setUserLogin, setToken, setDay, setMonth, setYear, setHourState } = authSlice.actions;
+export const { setUserLogin, setToken, setDate, setHourState } = authSlice.actions;
 export default authSlice.reducer
 export const selectCurrentUser = (state: RootState) => state.auth.user;

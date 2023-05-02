@@ -1,44 +1,34 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Calendar, dayjsLocalizer } from 'react-big-calendar'
 import dayjs from 'dayjs'
 import { useGetAppointments } from '../../hooks';
 
 const localizer = dayjsLocalizer(dayjs)
 
-export const CalendarMeetings = ({ }) => {
-  const [dateFilter, setDateFilter] = useState<{ month: number | null, year: number | null }>({
-    month: null,
-    year: null,
-  })
+export const CalendarMeetings = () => {
 
-  const res = useGetAppointments(dateFilter)
+  const { getAppointments } = useGetAppointments()
+  const [events, setEvents]: any = useState([]);
 
-  useEffect(() => {
-    console.log(res);
-    res.forEach((objectDate) => {
-      objectDate.map((e: any) => {
-        const objectStart = {
-          start: dayjs((e.day + e.month + e.year).toString()),
-          end: appointment
-            .add(1, "hour")
-            .toDate(),
-          title: "Some title"
-        }
-        console.log(objectStart);
-        
-        events.push(objectStart)
-      })
+  const onChange = async (newDate: any) => {
+    const date = dayjs(newDate);
+    const month = date.get('month')
+    const year = date.get('year')
+    const { data } = await getAppointments({ month: month, year: year });
+
+    data.forEach((e: any) => {
+      const appointment = dayjs(`${e.year}-${e.month + 1}-${e.day}T${e.hour}:00`);
+      const event = {
+        start: appointment.toDate(),
+        end: appointment
+          .add(1, "hour")
+          .toDate(),
+        title: "New title"
+      }
+      setEvents([event]);
     })
-  }, res)
-
-  const appointment = dayjs('2023-4-25');
-  const onChange = (newMonth: any) => {
-    const month = dayjs(newMonth).get('month')
-    const year = dayjs(newMonth).get('year')
-    setDateFilter({ ...dateFilter, month: month, year: year })
   }
 
-  const events: any = []
 
   return (
     <div>

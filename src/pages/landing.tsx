@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import { useGetButtons } from '../hooks';
 import { Button, Calendar } from '../components';
-import { RootState, setDay, setMonth, setYear, setHourState } from '../redux'
+import { RootState, setDate, setHourState } from '../redux'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useGetPackages } from '../hooks';
@@ -11,55 +11,47 @@ import EmailIcon from '@mui/icons-material/Email';
 import { imagenLadingTransition, imagenLadingTransition2 } from '../assets';
 import { Error } from '../components'
 
-export const Lading = () => {
+export const Landing = () => {
     const [showComponent, setShowComponent] = useState(false)
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const [res] = useGetPackages()
-    const dayState = useSelector((state: RootState) => state.auth.day)
-    const monthState = useSelector((state: RootState) => state.auth.month)    
-    const yearState = useSelector((state: RootState) => state.auth.year)
-    const hour = useSelector((state: RootState) => state.auth.hour)
-    const dateFormat = {
-        day: dayState,
-        month: monthState,
-        year: yearState,
-    }    
-    const [buttons] = useGetButtons(dateFormat)
+    const [responsePackages] = useGetPackages()
+    const { day, month, year, hour } = useSelector((state: RootState) => state.auth)
+    const [buttons] = useGetButtons({
+        day: day,
+        month: month,
+        year: year,
+    })
 
-    const onChange = (newValue: any) => {
-        const newValueFormat = dayjs(newValue).format('DD-MM-YYYY').split('-')
-        const day = newValueFormat[0]
-        dispatch(setDay(day));
-        const month = newValueFormat[1]
-        dispatch(setMonth(month));
-        const year = newValueFormat[2]
-        dispatch(setYear(year));
+    const onChange = (newValue: Dayjs | null) => {
+        const date = dayjs(newValue);
+        dispatch(setDate({ day: date.day(), month: date.month(), year: date.year() }));
     }
 
-    const onChangeHour = (event: any) => {
-        const res = buttons[event]
-        dispatch(setHourState(res))
+    const onChangeHour = (event: number) => {
+        const hour = buttons[event]
+        dispatch(setHourState(hour))
     }
 
+    const validateDates = () => day && month && year
 
-    const takeDate = (props: any) => {
-        if (dayState && monthState && yearState && hour)
+    const takeDate = () => {
+        if (validateDates() && hour)
             navigate('/form')
-        else if(!hour) { 
+        else if (!hour) {
             setShowComponent(true)
         }
     }
 
     return (
         <div className="flex-col animatecss animatecss-fadeInLeft">
-            
+
             <div className='grid grid-cols-2 gap-2 bg-[#A4B5A2] m-7'>
                 <div >
                     <img src={imagenLadingTransition} />
                 </div>
                 <div className='p-14 py-48'>
-                    <img src={imagenLadingTransition2}/>
+                    <img src={imagenLadingTransition2} />
                 </div>
             </div>
 
@@ -70,7 +62,7 @@ export const Lading = () => {
                     <Calendar onChange={onChange} />
                 </div>
 
-                {dayState && monthState && yearState ? (
+                {validateDates() ? (
                     <div className='flex-col py-44 animatecss animatecss-fadeInRight'>
                         <h1 className='text-teal-700 font-sans text-lg py-7 '><b>PLEASE SELECT A HOUR</b></h1>
                         <div className='flex space-x-6 p-4 py-2 px-44 '>
@@ -79,13 +71,13 @@ export const Lading = () => {
                             ))}
                         </div>
                         <div className='py-6 space-y-7'>
-                            {dayState && monthState && yearState && hour ? (
+                            {validateDates() && hour ? (
                                 <div>
-                                    <h1 className='font-sans text-lg text-[#10403b]'>You selected the day {dayState} of the month {monthState} of the year {yearState} at {hour} hours</h1>
+                                    <h1 className='font-sans text-lg text-[#10403b]'>You selected the day {day} of the month {month} of the year {year} at {hour} hours</h1>
                                 </div>
-                            ): <div> 
-                            {showComponent && <Error  variant="outlined" severity="info" className='mx-20'>You are very close to creating your appointment, to continue please select a time</Error>}
-                            </div> }
+                            ) : <div>
+                                {showComponent && <Error variant="outlined" severity="info" className='mx-20'>You are very close to creating your appointment, to continue please select a time</Error>}
+                            </div>}
                             <Button onClick={takeDate} sx={{ backgroundColor: '#10403b', color: 'white', borderColor: '#8AA6A3' }} variant='outlined' className='animatecss animatecss-fadeInRight'>TAKE YOUR DATE</Button>
                         </div>
                     </div>
@@ -107,8 +99,8 @@ export const Lading = () => {
                     <h1 className='text-teal-700 font-sans text-lg '><b>OUR PACKAGES</b></h1>
                 </div>
                 <div className="flex justify-between flex-wrap my-8">
-                    {res ? (
-                        res.map(({ title, sessions, description, path }: { title: string, sessions: number, description: string, path: string }, index) => (
+                    {responsePackages ? (
+                        responsePackages.map(({ title, sessions, description, path }: { title: string, sessions: number, description: string, path: string }, index) => (
                             <PackagesComponent key={index} title={title} sessions={sessions} description={description} path={path}></PackagesComponent>
                         ))
                     ) : <div>
