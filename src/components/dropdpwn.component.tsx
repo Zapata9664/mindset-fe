@@ -16,6 +16,6 @@ export const DropDown = (props: JSX.IntrinsicAttributes & TextFieldProps) => {
 
 const cases = [
   { label: 'Depresion'},
-  { label: 'Ansiedad', year: 2009 },
-  { label: 'Terapia de parejas', year: 1975 },
+  { label: 'Ansiedad' },
+  { label: 'Terapia de parejas' },
 ];
