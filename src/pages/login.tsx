@@ -45,10 +45,10 @@ export const Login = () => {
         <img src={imagenLogout} className='border-gray-400 h-96' />
       </div>
       <div className="flex border-gray-400 p-8 bg-white flex-col h-96 justify-around">
-        <h1 className='text-teal-700 font-sans'>We are <b>MENTAL HEALTH</b></h1>
-        <Input id="outlined-basic" label="Email" variant="standard" name="username" onChange={OnChange} />
-        <Input id="outlined-basic" label="Password" variant="standard" name='password' type="password" onChange={OnChange} />
-        <Button sx={{ backgroundColor: '#10403B', color: 'white', borderColor: '#10403B' }} variant='outlined' onClick={handlerSubmit} >Sign in</Button>
+        <h1 className='text-teal-700 font-sans'>Somos <b>MENTAL HEALTH</b></h1>
+        <Input id="outlined-basic" label="Correo electronico" variant="standard" name="username" onChange={OnChange} />
+        <Input id="outlined-basic" label="Contraseña" variant="standard" name='password' type="password" onChange={OnChange} />
+        <Button sx={{ backgroundColor: '#10403B', color: 'white', borderColor: '#10403B' }} variant='outlined' onClick={handlerSubmit} >INICIAR SESION</Button>
       </div>
     </div>
   )

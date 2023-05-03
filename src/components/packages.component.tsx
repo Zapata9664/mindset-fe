@@ -28,15 +28,12 @@ export const PackagesComponent = ({title, sessions, description, path}: Packages
             {title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Number of sessions {sessions}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
             {description}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-      <Button sx={{ backgroundColor: '#8AA6A3', color: 'white', borderColor: '#8AA6A3' }} variant='outlined'>BUY</Button>
+      <Button sx={{ backgroundColor: '#8AA6A3', color: 'white', borderColor: '#8AA6A3' }} variant='outlined'>COMPRAR</Button>
 
       </CardActions>
     </Card>

@@ -6,6 +6,15 @@ import { useGetAppointments } from '../../hooks';
 const localizer = dayjsLocalizer(dayjs)
 
 export const CalendarMeetings = () => {
+  const messages = {
+    next: 'Mes siguiente',
+    today: 'Fecha actual',
+    month: 'Mes',
+    week: 'Semana',
+    day: 'Dia',
+    previous: 'Mes anterior'
+
+  }
 
   const { getAppointments } = useGetAppointments()
   const [events, setEvents]: any = useState([]);
@@ -17,13 +26,15 @@ export const CalendarMeetings = () => {
     const { data } = await getAppointments({ month: month, year: year });
 
     data.forEach((e: any) => {
+
+
       const appointment = dayjs(`${e.year}-${e.month + 1}-${e.day}T${e.hour}:00`);
       const event = {
         start: appointment.toDate(),
         end: appointment
           .add(1, "hour")
           .toDate(),
-        title: "New title"
+        title: "Nuevo titulo"
       }
       setEvents([event]);
     })
@@ -39,6 +50,9 @@ export const CalendarMeetings = () => {
         endAccessor="end"
         style={{ height: 500, padding: 40 }}
         onNavigate={onChange}
+        culture='es'
+        messages={messages}
+        
 
       />
     </div>
