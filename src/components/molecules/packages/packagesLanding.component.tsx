@@ -1,6 +1,6 @@
 import React from 'react'
-import { useGetPackages } from '../../hooks';
-import { PackagesCard } from '..';
+import { useGetPackages } from '../../../hooks';
+import { PackagesCard } from '../..';
 
 
 

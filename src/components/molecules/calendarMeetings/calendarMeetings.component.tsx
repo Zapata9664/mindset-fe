@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Calendar, dayjsLocalizer } from 'react-big-calendar'
 import dayjs from 'dayjs'
-import { useGetAppointments } from '../../hooks';
+import { useGetAppointments } from '../../../hooks';
 
 const localizer = dayjsLocalizer(dayjs)
 

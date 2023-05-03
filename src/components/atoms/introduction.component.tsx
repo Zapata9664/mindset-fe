@@ -1,5 +1,5 @@
 import React from "react";
-import { imagenLadingTransition, imagenLadingTransition2 } from '../assets';
+import { imagenLadingTransition, imagenLadingTransition2 } from '../../assets';
 
 
 

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { imagenLogoHeader } from '../assets'
+import { imagenLogoHeader } from '../../../assets'
 import { NavLink } from 'react-router-dom'
-import { Button } from './button.component'
+import { Button } from '../../atoms/button.component'
 import { useSelector } from 'react-redux';
-import { RootState } from '../redux';
+import { RootState } from '../../../redux';
 
 export const Header = () => {
   const token = useSelector((state: RootState) => state.auth.token)
