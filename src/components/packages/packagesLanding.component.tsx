@@ -1,6 +1,6 @@
 import React from 'react'
-import { useGetPackages } from '../hooks';
-import { PackagesComponent } from '../components';
+import { useGetPackages } from '../../hooks';
+import { PackagesCard } from '..';
 
 
 
@@ -15,7 +15,7 @@ export const PackagesLanding = () => {
         <div className="flex justify-between flex-wrap my-8">
             {responsePackages ? (
                 responsePackages.map(({ title, sessions, description, path }: { title: string, sessions: number, description: string, path: string }, index) => (
-                    <PackagesComponent key={index} title={title} sessions={sessions} description={description} path={path}></PackagesComponent>
+                    <PackagesCard key={index} title={title} sessions={sessions} description={description} path={path}></PackagesCard>
                 ))
             ) : <div>
             </div>}

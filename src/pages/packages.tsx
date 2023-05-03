@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useGetPackages } from "../hooks";
-import { PackagesComponent } from "../components";
+import { PackagesCard } from "../components";
 
 export const Packages = () => {
   const [res] = useGetPackages();
@@ -26,13 +26,13 @@ export const Packages = () => {
             },
             index
           ) => (
-            <PackagesComponent
+            <PackagesCard
               key={index}
               title={title}
               sessions={sessions}
               description={description}
               path={path}
-            ></PackagesComponent>
+            ></PackagesCard>
           )
         )
       ) : (

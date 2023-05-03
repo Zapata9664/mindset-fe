@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
-import { Calendar } from '../components';
-import { RootState, setDate } from '../redux'
-import { Contact, HoursAvailable } from '../components'
+import { Calendar } from '..';
+import { RootState, setDate } from '../../redux'
+import { Contact, HoursAvailable } from '..'
 import { useDispatch, useSelector } from 'react-redux';
 
 

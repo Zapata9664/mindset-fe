@@ -4,8 +4,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions } from '@mui/material';
-import { Button } from './button.component';
-import { packagesThree } from '../assets';
+import { Button } from '../button.component';
+import { packagesThree } from '../../assets';
 
 interface PackagesComponentProps {
     title: string;
@@ -14,7 +14,7 @@ interface PackagesComponentProps {
       path: string;
     }
 
-export const PackagesComponent = ({title, sessions, description, path}: PackagesComponentProps) => {  
+export const PackagesCard = ({title, sessions, description, path}: PackagesComponentProps) => {  
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
