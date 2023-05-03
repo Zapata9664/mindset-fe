@@ -33,23 +33,26 @@ export const HoursAvailable = () => {
     }
 
     return (
-        <div className='flex-col py-44 animatecss animatecss-fadeInRight'>
-            <h1 className='text-teal-700 font-sans text-lg py-7 '><b>Por favor selecciona una hora</b></h1>
-            <div className='flex space-x-6 p-4 py-2 px-44 '>
-                {buttons.map((days: JSX.Element, index: number) => (
-                    <Button onClick={() => onChangeHour(index)} sx={{ backgroundColor: '#8AA6A3', color: 'white', borderColor: '#8AA6A3' }} variant='outlined' key={index} className='animatecss animatecss-fadeInRight'>{days}</Button>
-                ))}
-            </div>
-            <div className='py-6 space-y-7'>
-                {validateDates() && hour ? (
-                    <div>
-                        <h1 className='font-sans text-lg text-[#10403b]'> Seleccionaste el dia {day} del mes {month} del {year} a las {hour} horas</h1>
-                    </div>
-                ) : <div>
-                    {showComponent && <Error variant="outlined" severity="info" className='mx-20'>Estas muy cerca de crerar tu cita, debes seleccionar una hora para continuar</Error>}
-                </div>}
-                <Button onClick={takeDate} sx={{ backgroundColor: '#10403b', color: 'white', borderColor: '#8AA6A3' }} variant='outlined' className='animatecss animatecss-fadeInRight'>AGENDA TU CITA</Button>
-            </div>
+<div className="flex justify-center items-center p-12">
+    <div className="flex-col  p-8  h-72 justify-around space-y-6">
+        <h1 className='text-teal-700 font-sans text-lg text-center '><b>Por favor selecciona una hora</b></h1>
+        <div className='flex items-center justify-center space-x-6'>
+        {buttons.map((days: JSX.Element, index: number) => (
+            <Button onClick={() => onChangeHour(index)} sx={{ backgroundColor: '#8AA6A3', color: 'white', borderColor: '#8AA6A3' }} variant='outlined' key={index} className='animatecss animatecss-fadeInRight'>{days}</Button>
+        ))}
         </div>
-    )
+        {validateDates() && hour ? (
+            <div>
+                <Error variant="outlined" severity="info" className='mx-20'>Seleccionaste el dia {day} del mes {month} del {year} a las {hour} horas</Error>
+            </div>
+        ) : <div>
+            {showComponent && <Error variant="outlined" severity="error" className='mx-20'>Estas muy cerca de crerar tu cita, debes seleccionar una hora para continuar</Error>}
+        </div>}
+        <Button onClick={takeDate} sx={{ backgroundColor: '#10403b', color: 'white', borderColor: '#8AA6A3' }} variant='outlined' className='animatecss animatecss-fadeInRight'>AGENDA TU CITA</Button>
+    </div>
+</div>    )
 }
+
+
+
+
