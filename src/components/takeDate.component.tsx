@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
-import {  Calendar } from '../components';
+import { Calendar } from '../components';
 import { RootState, setDate } from '../redux'
-import {  Contact, HoursAvailable } from '../components'
+import { Contact, HoursAvailable } from '../components'
 import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -19,19 +19,19 @@ export const TakeDate = () => {
     const validateDates = () => day && month && year
 
 
- return (
-    <div className="grid grid-cols-2 gap-2 border-2 ">
-    <div className='px-32 m-24 space-y-6 '>
-        <h1 className='text-teal-700 font-sans text-lg '>Agenda tu cita</h1>
-        <Calendar onChange={onChange} />
-    </div>
+    return (
+        <div className="grid grid-cols-2 gap-2 border-2 ">
+            <div className='px-32 m-24 space-y-6 '>
+                <h1 className='text-teal-700 font-sans text-lg '>Agenda tu cita</h1>
+                <Calendar onChange={onChange} />
+            </div>
 
-    {validateDates() ? (
-        <HoursAvailable></HoursAvailable>
-    ) :
-    <Contact></Contact>
-    }
+            {validateDates() ? (
+                <HoursAvailable></HoursAvailable>
+            ) :
+                <Contact></Contact>
+            }
 
-</div>
- )
+        </div>
+    )
 }
